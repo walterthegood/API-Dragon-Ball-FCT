@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('ki'); 
             $table->bigInteger('maxKi'); 
             $table->string('race', 20);
+            $table->string('gender');
             $table->string('description', 50);
             $table->string('affiliation', 10);
             $table->foreignId('planet_id')->constrained()->onDelete('cascade');

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Planet;
 
 class PlanetSeeder extends Seeder
 {
@@ -12,6 +13,12 @@ class PlanetSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Planet::create(['name' => 'Tierra', 'isDestroyed' => false, 'description' => 'Planeta azul del Sistema Solar, hogar de Goku.']);
+        Planet::create(['name' => 'Planeta Vegeta', 'isDestroyed' => true, 'description' => 'Hogar original de la raza guerrera Saiyajin.']);
+        Planet::create(['name' => 'Namekusei', 'isDestroyed' => false, 'description' => 'Planeta natal de Piccolo y origen de las Esferas.']);
+        Planet::create(['name' => 'Planeta Sadala', 'isDestroyed' => false, 'description' => 'Hogar original de los Saiyajin del Universo 6.']);
+        Planet::create(['name' => 'Planeta Yardrat', 'isDestroyed' => false, 'description' => 'Planeta donde Goku aprendió la teletransportación.']);
+        Planet::create(['name' => 'Planeta de Bills', 'isDestroyed' => false, 'description' => 'Hogar del Dios de la Destrucción del Universo 7.']);
+        Planet::create(['name' => 'Planeta M2', 'isDestroyed' => false, 'description' => 'Planeta dominado por máquinas mutantes.']);
     }
 }
