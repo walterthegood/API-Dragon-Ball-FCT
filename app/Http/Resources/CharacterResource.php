@@ -22,20 +22,26 @@ class CharacterResource extends JsonResource
             'race' => $this->race,
             'gender' => $this->gender,
             'description' => $this->description,
+            'image' => $this->image ?? 'RELLENA CON TU URL',
             'affiliation' => $this->affiliation,
+            'deletedAt' => $this->deleted_at,
             
             'originPlanet' => [
                 'id' => $this->planet->id,
                 'name' => $this->planet->name,
                 'isDestroyed' => (bool) $this->planet->isDestroyed, 
+                'image' => $this->planet->image ?? 'RELLENA CON TU URL',
                 'description' => $this->planet->description,
+                'deletedAt' => $this->planet->deleted_at,
             ],
 
             'transformations' => $this->transformations->map(function ($transformacion) {
                 return [
                     'id' => $transformacion->id,
                     'name' => $transformacion->name,
-                    'ki' => (string) $transformacion->ki 
+                    'image' => $transformacion->image ?? 'RELLENA CON TU URL',
+                    'ki' => (string) $transformacion->ki,
+                    'deletedAt' => $transformacion->deleted_at,
                 ];
             })
         ];

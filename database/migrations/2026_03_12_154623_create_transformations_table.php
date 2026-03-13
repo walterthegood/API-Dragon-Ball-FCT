@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('transformations', function (Blueprint $table) {
         $table->id();
-        $table->string('name', 15); 
-        $table->bigInteger('ki');
+        $table->string('name', 30); 
+        $table->string('ki');
+        $table->string('image')->nullable();
         $table->foreignId('character_id')->constrained()->onDelete('cascade');
         $table->timestamps();
+        $table->softDeletes();
         });
     }
 

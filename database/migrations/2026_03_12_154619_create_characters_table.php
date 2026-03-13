@@ -14,14 +14,16 @@ return new class extends Migration
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('ki'); 
-            $table->bigInteger('maxKi'); 
+            $table->string('ki'); 
+            $table->string('maxKi'); 
             $table->string('race', 20);
             $table->string('gender');
             $table->string('description', 50);
-            $table->string('affiliation', 10);
+            $table->string('affiliation', 15);
+            $table->string('image')->nullable();
             $table->foreignId('planet_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
