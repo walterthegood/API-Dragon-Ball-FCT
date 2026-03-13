@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCharacterRequest extends FormRequest
+class UpdateCharacterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,15 +23,7 @@ class StoreCharacterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:50',
-            'ki' => 'required|string', 
-            'maxKi' => 'required|string',
-            'race' => 'required|string|max:20',
-            'gender' => 'required|string',
-            'description' => 'required|string|max:50',
-            'image' => 'required|url',
-            'affiliation' => 'required|string|max:10',
-            'planet_id' => 'required|exists:planets,id', 
+            //
         ];
     }
 }
