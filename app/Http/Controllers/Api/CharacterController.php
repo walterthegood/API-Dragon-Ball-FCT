@@ -32,7 +32,9 @@ class CharacterController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $personaje = Character::with(['planet', 'transformations'])->findOrFail($id);    
+    
+        return CharacterResource::make($personaje);
     }
 
     /**

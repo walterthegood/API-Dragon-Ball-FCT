@@ -9,3 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/personajes', [CharacterController::class, 'index']);
+
+Route::get('/personajes/{id}', [CharacterController::class, 'show']);
