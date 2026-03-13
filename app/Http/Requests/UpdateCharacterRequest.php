@@ -23,7 +23,15 @@ class UpdateCharacterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'sometimes|string|max:50',
+            'ki' => 'sometimes|string', 
+            'maxKi' => 'sometimes|string',
+            'race' => 'sometimes|string|max:20',
+            'gender' => 'sometimes|string',
+            'description' => 'sometimes|string|max:50',
+            'image' => 'sometimes|url',
+            'affiliation' => 'sometimes|string|max:10',
+            'planet_id' => 'sometimes|exists:planets,id',
         ];
     }
 }

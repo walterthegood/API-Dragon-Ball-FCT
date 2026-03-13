@@ -14,6 +14,7 @@ class CharacterController extends Controller
      */
     public function index()
     {
+        //READ
         $personajes = Character::with(['planet', 'transformations'])->get();
 
         return CharacterResource::collection($personajes);
@@ -24,7 +25,11 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //CREATE
+
+        $character = Character::create($request->all());
+        $character->load(['planet', 'transformations']);
+        return CharacterResource::make($character);
     }
 
     /**
@@ -32,6 +37,7 @@ class CharacterController extends Controller
      */
     public function show(string $id)
     {
+        //READ By ID
         $personaje = Character::with(['planet', 'transformations'])->findOrFail($id);    
     
         return CharacterResource::make($personaje);
@@ -42,7 +48,11 @@ class CharacterController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //UPDATE
+        $character = Character::findOrFail($id);
+        $character->update($request->all());
+        $character->load(['planet', 'transformations']);
+        return CharacterResource::make($character);
     }
 
     /**
@@ -50,6 +60,12 @@ class CharacterController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //DELETE
+        
+        $character = Character::findOrFail($id);
+        $character->delete();
+        return response()->json([
+            'message' => 'Personaje eliminado con éxito'
+        ], 200);
     }
 }

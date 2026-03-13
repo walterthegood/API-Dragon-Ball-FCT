@@ -11,3 +11,6 @@ Route::get('/user', function (Request $request) {
 Route::get('/personajes', [CharacterController::class, 'index']);
 
 Route::get('/personajes/{id}', [CharacterController::class, 'show']);
+Route::post('/personajes', [CharacterController::class, 'store']);
+Route::put('/personajes/{id}', [CharacterController::class, 'update']);
+Route::delete('/personajes/{id}', [CharacterController::class, 'destroy']);
