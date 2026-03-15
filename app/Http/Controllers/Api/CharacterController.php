@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCharacterRequest;
 use Illuminate\Http\Request;
 use App\Models\Character;
 use App\Http\Resources\CharacterResource; 
@@ -23,12 +24,25 @@ class CharacterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCharacterRequest $request)
     {
-        //CREATE
+        
+        $planetName = $request->input('originPlanet.name');
+        $planet = \App\Models\Planet::where('name', $planetName)->first();
 
-        $character = Character::create($request->all());
+        $characterData = $request->except(['originPlanet', 'transformations']);
+
+        $characterData['planet_id'] = $planet->id;
+
+        $character = Character::create($characterData);
+
+        $transformationsData = $request->input('transformations', []);
+        if (!empty($transformationsData)) {
+            $character->transformations()->createMany($transformationsData);
+        }
+   
         $character->load(['planet', 'transformations']);
+
         return CharacterResource::make($character);
     }
 

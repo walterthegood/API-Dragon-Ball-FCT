@@ -32,9 +32,15 @@ class StoreCharacterRequest extends FormRequest
             'image' => 'required|url',
             'affiliation' => 'required|string|max:10',
 
-            'planet_name' => 'required|string|exists:planets,name',
-            'transformations' => 'sometimes|array',
+            'originPlanet' => 'required|array',
 
+            // Exigimos TODOS los campos del planeta
+            'originPlanet.name' => 'required|string|exists:planets,name',
+            'originPlanet.isDestroyed' => 'required|boolean',
+            'originPlanet.description' => 'required|string',
+            'originPlanet.image' => 'required|url',
+
+            'transformations' => 'sometimes|array', 
             'transformations.*.name' => 'required|string|exists:transformations,name',
             'transformations.*.image' => 'required|url',
             'transformations.*.ki' => 'required|string',
