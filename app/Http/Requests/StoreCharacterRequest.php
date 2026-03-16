@@ -23,7 +23,7 @@ class StoreCharacterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:50',
+            'name' => 'required|string|max:50|unique:characters,name',
             'ki' => 'required|string', 
             'maxKi' => 'required|string',
             'race' => 'required|string|max:20',
@@ -50,6 +50,7 @@ class StoreCharacterRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'name.unique' => 'EL NOMBRE DEL PERSONAJE YA EXISTE',
             'planet_name.exists' => 'NOMBRE DE PLANETA INVALIDO',
             'transformations.*.name.exists' => 'NOMBRE DE TRANSFORMACION NO VALIDA',
         ];

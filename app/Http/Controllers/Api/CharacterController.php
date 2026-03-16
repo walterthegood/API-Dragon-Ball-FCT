@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCharacterRequest;
 use Illuminate\Http\Request;
 use App\Models\Character;
 use App\Http\Resources\CharacterResource; 
+use App\Http\Requests\UpdateCharacterRequest;
 
 class CharacterController extends Controller
 {
@@ -43,7 +44,8 @@ class CharacterController extends Controller
    
         $character->load(['planet', 'transformations']);
 
-        return CharacterResource::make($character);
+        return response() -> json($character); 
+        // CharacterResource::make($character);
     }
 
     /**
@@ -60,13 +62,31 @@ class CharacterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCharacterRequest $request, $id)
     {
         //UPDATE
         $character = Character::findOrFail($id);
-        $character->update($request->all());
+        $characterData = $request->except(['originPlanet', 'transformations']); 
+        
+
+        if ($request->has('originPlanet.name')) {
+            $planetName = $request->input('originPlanet.name');
+            $planet = \App\Models\Planet::where('name', $planetName)->first();
+            
+            $characterData['planet_id'] = $planet->id;
+        }
+        
+        $character->update($characterData);
+        
+        if ($request->has('transformations')) {
+            $character->transformations()->delete();
+            $character->transformations()->createMany($request->input('transformations'));
+        }
+
+
         $character->load(['planet', 'transformations']);
-        return CharacterResource::make($character);
+
+       return CharacterResource::make($character);
     }
 
     /**
