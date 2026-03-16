@@ -16,7 +16,7 @@ return new class extends Migration
         $table->string('name', 30); 
         $table->string('ki');
         $table->string('image')->nullable();
-        $table->foreignId('character_id')->constrained()->onDelete('cascade');
+        $table->foreignId('character_id')->nullable()->constrained()->onDelete('cascade');
         $table->timestamps();
         $table->softDeletes();
         });

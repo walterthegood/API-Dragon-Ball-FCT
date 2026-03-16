@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CharacterController; 
 use App\Http\Controllers\Api\PlanetController;
+use App\Http\Controllers\Api\TransformationController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -17,3 +18,5 @@ Route::put('/personajes/{id}', [CharacterController::class, 'update']);
 Route::delete('/personajes/{id}', [CharacterController::class, 'destroy']);
 
 Route::apiResource('planetas', PlanetController::class);
+
+Route::apiResource('transformaciones', TransformationController::class);
