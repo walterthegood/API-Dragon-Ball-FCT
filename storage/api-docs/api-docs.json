@@ -412,6 +412,95 @@
                         "description": "Transformación no encontrada (o eliminada)"
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Transformaciones"
+                ],
+                "summary": "Actualizar una transformación existente",
+                "operationId": "df5c1d839c1779b1532d0a3599d3714a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "El ID numérico de la transformación que vas a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Envía solo los campos que quieras actualizar. (Ejemplo: Aumentar el Ki o asignarla a un personaje).",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Super Saiyan 3 (Dominado)"
+                                    },
+                                    "ki": {
+                                        "type": "string",
+                                        "example": "500000000"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "example": "https://ejemplo.com/ssj3_dominado.webp"
+                                    },
+                                    "character_id": {
+                                        "description": "ID del personaje para asignarla, o null para dejarla huérfana.",
+                                        "type": "integer",
+                                        "example": 1,
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Transformación actualizada con éxito"
+                    },
+                    "404": {
+                        "description": "Transformación no encontrada"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Transformaciones"
+                ],
+                "summary": "Eliminar una transformación",
+                "description": "Elimina la transformación indicada por su ID de la base de datos.",
+                "operationId": "1e718b49359c8a635dabfcf8130dcad5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "El ID numérico de la transformación que vas a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transformación eliminada con éxito"
+                    },
+                    "404": {
+                        "description": "Transformación no encontrada (o ya estaba eliminada)"
+                    }
+                }
             }
         }
     },

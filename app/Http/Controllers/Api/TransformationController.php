@@ -91,9 +91,43 @@ class TransformationController extends Controller
         return TransformationResource::make($t);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    #[OA\Put(
+        path: "/api/transformaciones/{id}",
+        summary: "Actualizar una transformación existente",
+        tags: ["Transformaciones"],
+        parameters: [
+            new OA\Parameter(
+                name: "id",
+                description: "El ID numérico de la transformación que vas a actualizar",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(type: "integer", example: 1)
+            )
+        ],
+        requestBody: new OA\RequestBody(
+            required: false,
+            description: "Envía solo los campos que quieras actualizar. (Ejemplo: Aumentar el Ki o asignarla a un personaje).",
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: "name", type: "string", example: "Super Saiyan 3 (Dominado)"),
+                    new OA\Property(property: "ki", type: "string", example: "500000000"),
+                    new OA\Property(property: "image", type: "string", example: "https://ejemplo.com/ssj3_dominado.webp"),
+                    new OA\Property(
+                        property: "character_id", 
+                        type: "integer", 
+                        nullable: true, 
+                        example: 1, 
+                        description: "ID del personaje para asignarla, o null para dejarla huérfana."
+                    )
+                ]
+            )
+        ),
+        responses: [
+            new OA\Response(response: 200, description: "Transformación actualizada con éxito"),
+            new OA\Response(response: 404, description: "Transformación no encontrada"),
+            new OA\Response(response: 422, description: "Error de validación")
+        ]
+    )]
     public function update(UpdateTransformationRequest $request, $id)
     {
         $t = Transformation::findOrFail($id);
@@ -101,9 +135,25 @@ class TransformationController extends Controller
         return TransformationResource::make($t->load('character'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    #[OA\Delete(
+        path: "/api/transformaciones/{id}",
+        summary: "Eliminar una transformación",
+        description: "Elimina la transformación indicada por su ID de la base de datos.",
+        tags: ["Transformaciones"],
+        parameters: [
+            new OA\Parameter(
+                name: "id",
+                description: "El ID numérico de la transformación que vas a eliminar",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(type: "integer", example: 1)
+            )
+        ],
+        responses: [
+            new OA\Response(response: 200, description: "Transformación eliminada con éxito"),
+            new OA\Response(response: 404, description: "Transformación no encontrada (o ya estaba eliminada)")
+        ]
+    )]
     public function destroy(string $id)
     {
         $t = Transformation::findOrFail($id);
