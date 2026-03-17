@@ -109,9 +109,24 @@ class CharacterController extends Controller
         return response()->json($character->load(['planet', 'transformations']), 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    #[OA\Get(
+        path: "/api/personajes/{id}",
+        summary: "Obtener un personaje por su ID",
+        tags: ["Personajes"],
+        parameters: [
+            new OA\Parameter(
+                name: "id",
+                description: "El ID numérico del personaje que quieres buscar",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(type: "integer", example: 1)
+            )
+        ],
+        responses: [
+            new OA\Response(response: 200, description: "Personaje encontrado y devuelto con éxito"),
+            new OA\Response(response: 404, description: "Personaje no encontrado (o eliminado)")
+        ]
+    )]
     public function show(string $id)
     {
         //READ By ID

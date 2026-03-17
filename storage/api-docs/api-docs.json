@@ -143,6 +143,35 @@
                     }
                 }
             }
+        },
+        "/api/personajes/{id}": {
+            "get": {
+                "tags": [
+                    "Personajes"
+                ],
+                "summary": "Obtener un personaje por su ID",
+                "operationId": "df74aada7e99eb3739537ddd8ec04819",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "El ID numérico del personaje que quieres buscar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Personaje encontrado y devuelto con éxito"
+                    },
+                    "404": {
+                        "description": "Personaje no encontrado (o eliminado)"
+                    }
+                }
+            }
         }
     },
     "tags": [
