@@ -135,9 +135,69 @@ class CharacterController extends Controller
         return CharacterResource::make($personaje);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    #[OA\Put(
+            path: "/api/personajes/{id}",
+            summary: "Actualizar un personaje existente",
+            tags: ["Personajes"],
+            parameters: [
+                new OA\Parameter(
+                    name: "id",
+                    description: "El ID numérico del personaje que vas a actualizar",
+                    in: "path",
+                    required: true,
+                    schema: new OA\Schema(type: "integer", example: 1)
+                )
+            ],
+            requestBody: new OA\RequestBody(
+                required: false,
+                description: "Envía solo los campos que quieras actualizar. (Ejemplo: Solo enviar el Ki y la descripción)",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "name", type: "string", example: "Goku (Post-Entrenamiento)"),
+                        new OA\Property(property: "ki", type: "string", example: "90000000"),
+                        new OA\Property(property: "maxKi", type: "string", example: "150000000"),
+                        new OA\Property(property: "race", type: "string", example: "Saiyan"),
+                        new OA\Property(property: "gender", type: "string", example: "Male"),
+                        new OA\Property(property: "description", type: "string", example: "Goku después de entrenar..."),
+                        new OA\Property(property: "image", type: "string", example: "https://ejemplo.com/goku_nuevo.webp"),
+                        new OA\Property(property: "affiliation", type: "string", example: "Z Fighter"),
+                        
+                        // Bloque anidado del Planeta (Opcional)
+                        new OA\Property(
+                            property: "originPlanet",
+                            type: "object",
+                            description: "Opcional. Si lo envías, debes mandar sus datos completos.",
+                            properties: [
+                                new OA\Property(property: "name", type: "string", example: "Tierra"),
+                                new OA\Property(property: "isDestroyed", type: "boolean", example: false),
+                                new OA\Property(property: "description", type: "string", example: "Hogar adoptivo de Goku"),
+                                new OA\Property(property: "image", type: "string", example: "https://ejemplo.com/tierra.webp")
+                            ]
+                        ),
+                        
+                        // Array anidado de Transformaciones (Opcional)
+                        new OA\Property(
+                            property: "transformations",
+                            type: "array",
+                            description: "Opcional. Si lo envías, borrará las anteriores y guardará estas nuevas.",
+                            items: new OA\Items(
+                                type: "object",
+                                properties: [
+                                    new OA\Property(property: "name", type: "string", example: "Ultra Ego"),
+                                    new OA\Property(property: "image", type: "string", example: "https://ejemplo.com/ssj2.webp"),
+                                    new OA\Property(property: "ki", type: "string", example: "150000000")
+                                ]
+                            )
+                        )
+                    ]
+                )
+            ),
+            responses: [
+                new OA\Response(response: 200, description: "Personaje actualizado con éxito"),
+                new OA\Response(response: 404, description: "Personaje no encontrado"),
+                new OA\Response(response: 422, description: "Error de validación (ej. El planeta no es válido)"),
+            ]
+    )]
     public function update(UpdateCharacterRequest $request, $id)
     {
         //UPDATE
@@ -165,9 +225,6 @@ class CharacterController extends Controller
        return CharacterResource::make($character);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //DELETE

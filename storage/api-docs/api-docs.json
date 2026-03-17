@@ -171,6 +171,124 @@
                         "description": "Personaje no encontrado (o eliminado)"
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Personajes"
+                ],
+                "summary": "Actualizar un personaje existente",
+                "operationId": "3e32c2eb8b0bc16d87fbf8eb23ef41ff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "El ID numérico del personaje que vas a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Envía solo los campos que quieras actualizar. (Ejemplo: Solo enviar el Ki y la descripción)",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Goku (Post-Entrenamiento)"
+                                    },
+                                    "ki": {
+                                        "type": "string",
+                                        "example": "90000000"
+                                    },
+                                    "maxKi": {
+                                        "type": "string",
+                                        "example": "150000000"
+                                    },
+                                    "race": {
+                                        "type": "string",
+                                        "example": "Saiyan"
+                                    },
+                                    "gender": {
+                                        "type": "string",
+                                        "example": "Male"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Goku después de entrenar..."
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "example": "https://ejemplo.com/goku_nuevo.webp"
+                                    },
+                                    "affiliation": {
+                                        "type": "string",
+                                        "example": "Z Fighter"
+                                    },
+                                    "originPlanet": {
+                                        "description": "Opcional. Si lo envías, debes mandar sus datos completos.",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Tierra"
+                                            },
+                                            "isDestroyed": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Hogar adoptivo de Goku"
+                                            },
+                                            "image": {
+                                                "type": "string",
+                                                "example": "https://ejemplo.com/tierra.webp"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "transformations": {
+                                        "description": "Opcional. Si lo envías, borrará las anteriores y guardará estas nuevas.",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Ultra Ego"
+                                                },
+                                                "image": {
+                                                    "type": "string",
+                                                    "example": "https://ejemplo.com/ssj2.webp"
+                                                },
+                                                "ki": {
+                                                    "type": "string",
+                                                    "example": "150000000"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Personaje actualizado con éxito"
+                    },
+                    "404": {
+                        "description": "Personaje no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación (ej. El planeta no es válido)"
+                    }
+                }
             }
         }
     },
