@@ -319,6 +319,185 @@
                 }
             }
         },
+        "/api/planetas": {
+            "get": {
+                "tags": [
+                    "Planetas"
+                ],
+                "summary": "Obtener todos los planetas",
+                "operationId": "fe8c928e7b4ecd15badc54d8791fdbce",
+                "responses": {
+                    "200": {
+                        "description": "Lista de planetas"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Planetas"
+                ],
+                "summary": "Crear un nuevo planeta",
+                "operationId": "1ffaf79904345f5156d3403e6a2e069a",
+                "requestBody": {
+                    "description": "Datos del nuevo planeta",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "isDestroyed",
+                                    "description",
+                                    "image"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Planeta Vegeta 2"
+                                    },
+                                    "isDestroyed": {
+                                        "type": "boolean",
+                                        "example": true
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Planeta natal de los saiyajin..."
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "example": "https://ejemplo.com/planeta_vegeta.webp"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Planeta creado con éxito"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/planetas/{id}": {
+            "get": {
+                "tags": [
+                    "Planetas"
+                ],
+                "summary": "Obtener un planeta por ID",
+                "operationId": "3706697f71f833a754567cb9bc42b9be",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del planeta en especifico que quieres obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Planeta encontrado"
+                    },
+                    "404": {
+                        "description": "Planeta no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Planetas"
+                ],
+                "summary": "Actualizar un planeta existente",
+                "operationId": "f54ba989ec73cff10ed7e85043fd5c5d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del planeta que quieres actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Datos del planeta a actualizar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Planeta Vegeta 777"
+                                    },
+                                    "isDestroyed": {
+                                        "type": "boolean",
+                                        "example": true
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Planeta natal..."
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "example": "https://ejemplo.com/planeta_vegeta.webp"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Planeta actualizado con éxito"
+                    },
+                    "404": {
+                        "description": "Planeta no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Planetas"
+                ],
+                "summary": "Eliminar un planeta",
+                "operationId": "810fe44192d7c74dc7be63640e9b526f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del planeta que quieres eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 8
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Planeta eliminado con éxito"
+                    },
+                    "404": {
+                        "description": "Planeta no encontrado"
+                    }
+                }
+            }
+        },
         "/api/transformaciones": {
             "get": {
                 "tags": [
@@ -508,6 +687,10 @@
         {
             "name": "Personajes",
             "description": "Personajes"
+        },
+        {
+            "name": "Planetas",
+            "description": "Planetas"
         },
         {
             "name": "Transformaciones",

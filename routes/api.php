@@ -17,7 +17,8 @@ Route::post('/personajes', [CharacterController::class, 'store']);
 Route::put('/personajes/{id}', [CharacterController::class, 'update']);
 Route::delete('/personajes/{id}', [CharacterController::class, 'destroy']);
 
-Route::apiResource('planetas', PlanetController::class);
+Route::apiResource('planetas', PlanetController::class)
+->parameters(['planetas' => 'id']);
 
 Route::apiResource('transformaciones', TransformationController::class)
 ->parameters(['transformaciones' => 'id']);
