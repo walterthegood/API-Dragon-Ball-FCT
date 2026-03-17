@@ -289,6 +289,34 @@
                         "description": "Error de validación (ej. El planeta no es válido)"
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "Personajes"
+                ],
+                "summary": "Eliminar un personaje",
+                "description": "Realiza un borrado lógico (Soft Delete) del personaje indicado por su ID.",
+                "operationId": "f49405bd769a339c74f76d42feb0d79e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "El ID numérico del personaje que vas a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Personaje eliminado con éxito"
+                    },
+                    "404": {
+                        "description": "Personaje no encontrado (o ya estaba eliminado)"
+                    }
+                }
             }
         }
     },

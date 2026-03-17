@@ -225,6 +225,25 @@ class CharacterController extends Controller
        return CharacterResource::make($character);
     }
 
+    #[OA\Delete(
+        path: "/api/personajes/{id}",
+        summary: "Eliminar un personaje",
+        description: "Realiza un borrado lógico (Soft Delete) del personaje indicado por su ID.",
+        tags: ["Personajes"],
+        parameters: [
+            new OA\Parameter(
+                name: "id",
+                description: "El ID numérico del personaje que vas a eliminar",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(type: "integer", example: 1)
+            )
+        ],
+        responses: [
+            new OA\Response(response: 200, description: "Personaje eliminado con éxito"),
+            new OA\Response(response: 404, description: "Personaje no encontrado (o ya estaba eliminado)")
+        ]
+    )]
     public function destroy(string $id)
     {
         //DELETE
