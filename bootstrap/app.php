@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException; // IMPORTANTE
+use Illuminate\Database\Eloquent\ModelNotFoundException; // IMPORTANTE
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -14,6 +16,22 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         //
     })
-    ->withExceptions(function (Exceptions $exceptions): void {
-        //
+    ->withExceptions(function (Exceptions $exceptions) {
+
+        // 1. Forzar JSON en todas las peticiones a la API
+        $exceptions->shouldRenderJsonWhen(function ($request, Throwable $e) {
+            if ($request->is('api/*')) {
+                return true;
+            }
+            return $request->expectsJson();
+        });
+
+        $exceptions->render(function (NotFoundHttpException $e, $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'message' => 'El recurso solicitado no existe en nuestra base de datos.'
+                ], 404);
+            }
+        });
+
     })->create();

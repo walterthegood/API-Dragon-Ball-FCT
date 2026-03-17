@@ -19,4 +19,5 @@ Route::delete('/personajes/{id}', [CharacterController::class, 'destroy']);
 
 Route::apiResource('planetas', PlanetController::class);
 
-Route::apiResource('transformaciones', TransformationController::class);
+Route::apiResource('transformaciones', TransformationController::class)
+->parameters(['transformaciones' => 'id']);

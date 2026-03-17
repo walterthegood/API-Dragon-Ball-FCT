@@ -318,12 +318,111 @@
                     }
                 }
             }
+        },
+        "/api/transformaciones": {
+            "get": {
+                "tags": [
+                    "Transformaciones"
+                ],
+                "summary": "Obtener todas las transformaciones",
+                "operationId": "c65fde83076b6d91fcf751780ea1bf32",
+                "responses": {
+                    "200": {
+                        "description": "Lista de transformaciones"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Transformaciones"
+                ],
+                "summary": "Crear una nueva transformación",
+                "operationId": "b6b1c914e621f0d944f3a2a8c591d232",
+                "requestBody": {
+                    "description": "Datos de la nueva transformación. Puedes enviarla huérfana o asignarla directamente a un personaje.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "ki",
+                                    "image"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Ultra Ego 2"
+                                    },
+                                    "ki": {
+                                        "type": "string",
+                                        "example": "150000000"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "example": "https://ejemplo.com/ultra_ego.webp"
+                                    },
+                                    "character_id": {
+                                        "description": "Opcional. ID del personaje al que pertenece.",
+                                        "type": "integer",
+                                        "example": 1,
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Transformación creada con éxito"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/transformaciones/{id}": {
+            "get": {
+                "tags": [
+                    "Transformaciones"
+                ],
+                "summary": "Obtener una transformación por su ID",
+                "description": "Devuelve los datos detallados de una transformación específica buscando por su ID.",
+                "operationId": "6176573197d1e7467146c41c995f6d9a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "El ID numérico de la transformación que quieres buscar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 8
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transformación encontrada y devuelta con éxito"
+                    },
+                    "404": {
+                        "description": "Transformación no encontrada (o eliminada)"
+                    }
+                }
+            }
         }
     },
     "tags": [
         {
             "name": "Personajes",
             "description": "Personajes"
+        },
+        {
+            "name": "Transformaciones",
+            "description": "Transformaciones"
         }
     ]
 }
