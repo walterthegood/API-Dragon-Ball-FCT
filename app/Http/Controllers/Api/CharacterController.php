@@ -27,14 +27,71 @@ class CharacterController extends Controller
         return CharacterResource::collection($personajes);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    #[OA\Post(
+        path: "/api/personajes",
+        summary: "Crear un nuevo personaje",
+        tags: ["Personajes"],
+        requestBody: new OA\RequestBody(
+            required: true,
+            description: "Datos del personaje, incluyendo su planeta y transformaciones",
+            content: new OA\JsonContent(
+                required: ["name", "ki", "maxKi", "race", "gender", "description", "image", "affiliation", "originPlanet"],
+                properties: [
+                    new OA\Property(property: "name", type: "string", example: "Hit"),
+                    new OA\Property(property: "ki", type: "string", example: "10000000"),
+                    new OA\Property(property: "maxKi", type: "string", example: "50000000"),
+                    new OA\Property(property: "race", type: "string", example: "Assassin"),
+                    new OA\Property(property: "gender", type: "string", example: "Male"),
+                    new OA\Property(property: "description", type: "string", example: "Asesino legendario del Universo 6"),
+                    new OA\Property(property: "image", type: "string", example: "https://ejemplo.com/hit.webp"),
+                    new OA\Property(property: "affiliation", type: "string", example: "Universe 6"),
+                    // Bloque anidado del Planeta
+
+                    new OA\Property(
+                        property: "originPlanet",
+                        type: "object",
+                        required: ["name", "isDestroyed", "description", "image"],
+                        properties: [
+                            new OA\Property(property: "name", type: "string", example: "Planeta Sadala"),
+                            new OA\Property(property: "isDestroyed", type: "boolean", example: false),
+                            new OA\Property(property: "description", type: "string", example: "Hogar original de los Saiyans"),
+                            new OA\Property(property: "image", type: "string", example: "https://ejemplo.com/sadala.webp")
+                        ]
+                    ),
+
+                    // Array de transformaciones
+                    new OA\Property(
+                        property: "transformations",
+                        type: "array",
+                        items: new OA\Items(
+                            type: "object",
+                            properties: [
+                                new OA\Property(property: "name", type: "string", example: "Orange Piccolo"),
+                                new OA\Property(property: "image", type: "string", example: "https://ejemplo.com/super-saiyan.webp"),
+                                new OA\Property(property: "ki", type: "string", example: "99999999")
+                            ]
+                        )
+                    )    
+                ]
+            )
+        ),
+        responses: [
+            new OA\Response(response: 201, description: "Personaje creado con éxito"),
+            new OA\Response(response: 422, description: "Error de validación (ej. El personaje ya existe o el planeta no es válido)")
+        ]
+    )]
+
     public function store(StoreCharacterRequest $request)
     {
         
         $planetName = $request->input('originPlanet.name');
         $planet = \App\Models\Planet::where('name', $planetName)->first();
+
+        if (!$planet) {
+            return response()->json([
+            'message' => "Error: El planeta '$planetName' no existe. Créalo primero."
+            ], 422);
+        }
 
         $characterData = $request->except(['originPlanet', 'transformations']);
 
@@ -49,8 +106,7 @@ class CharacterController extends Controller
    
         $character->load(['planet', 'transformations']);
 
-        return response() -> json($character); 
-        // CharacterResource::make($character);
+        return response()->json($character->load(['planet', 'transformations']), 201);
     }
 
     /**

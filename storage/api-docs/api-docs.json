@@ -24,6 +24,124 @@
                         "description": "Lista de personajes obtenida con éxito"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Personajes"
+                ],
+                "summary": "Crear un nuevo personaje",
+                "operationId": "bb37a7570de4b6e1946f15ab0eaad748",
+                "requestBody": {
+                    "description": "Datos del personaje, incluyendo su planeta y transformaciones",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "ki",
+                                    "maxKi",
+                                    "race",
+                                    "gender",
+                                    "description",
+                                    "image",
+                                    "affiliation",
+                                    "originPlanet"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Hit"
+                                    },
+                                    "ki": {
+                                        "type": "string",
+                                        "example": "10000000"
+                                    },
+                                    "maxKi": {
+                                        "type": "string",
+                                        "example": "50000000"
+                                    },
+                                    "race": {
+                                        "type": "string",
+                                        "example": "Assassin"
+                                    },
+                                    "gender": {
+                                        "type": "string",
+                                        "example": "Male"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Asesino legendario del Universo 6"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "example": "https://ejemplo.com/hit.webp"
+                                    },
+                                    "affiliation": {
+                                        "type": "string",
+                                        "example": "Universe 6"
+                                    },
+                                    "originPlanet": {
+                                        "required": [
+                                            "name",
+                                            "isDestroyed",
+                                            "description",
+                                            "image"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Planeta Sadala"
+                                            },
+                                            "isDestroyed": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Hogar original de los Saiyans"
+                                            },
+                                            "image": {
+                                                "type": "string",
+                                                "example": "https://ejemplo.com/sadala.webp"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "transformations": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Orange Piccolo"
+                                                },
+                                                "image": {
+                                                    "type": "string",
+                                                    "example": "https://ejemplo.com/super-saiyan.webp"
+                                                },
+                                                "ki": {
+                                                    "type": "string",
+                                                    "example": "99999999"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Personaje creado con éxito"
+                    },
+                    "422": {
+                        "description": "Error de validación (ej. El personaje ya existe o el planeta no es válido)"
+                    }
+                }
             }
         }
     },

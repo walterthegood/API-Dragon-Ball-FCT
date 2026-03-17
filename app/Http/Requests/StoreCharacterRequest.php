@@ -55,4 +55,14 @@ class StoreCharacterRequest extends FormRequest
             'transformations.*.name.exists' => 'NOMBRE DE TRANSFORMACION NO VALIDA',
         ];
     }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        throw new \Illuminate\Http\Exceptions\HttpResponseException(
+            response()->json([
+                'message' => 'Errores de validación',
+                'errors' => $validator->errors()
+            ], 422)
+        );
+    }
 }
