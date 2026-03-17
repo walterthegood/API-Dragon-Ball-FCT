@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use OpenApi\Attributes as OA;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCharacterRequest;
 use Illuminate\Http\Request;
@@ -11,9 +11,14 @@ use App\Http\Requests\UpdateCharacterRequest;
 
 class CharacterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    #[OA\Get(
+        path: "/api/personajes",
+        summary: "Listar todos los personajes",
+        tags: ["Personajes"],
+        responses: [
+            new OA\Response(response: 200, description: "Lista de personajes obtenida con éxito")
+        ]
+    )]
     public function index()
     {
         //READ

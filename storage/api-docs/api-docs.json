@@ -1,0 +1,36 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Dragon Ball FCT",
+        "description": "Documentación oficial de la API. ¡Siente el Ki!",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://api-dragon-ball-fct.test",
+            "description": "Servidor Local"
+        }
+    ],
+    "paths": {
+        "/api/personajes": {
+            "get": {
+                "tags": [
+                    "Personajes"
+                ],
+                "summary": "Listar todos los personajes",
+                "operationId": "81b94e43f5695c010db6746c025e8588",
+                "responses": {
+                    "200": {
+                        "description": "Lista de personajes obtenida con éxito"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Personajes",
+            "description": "Personajes"
+        }
+    ]
+}
