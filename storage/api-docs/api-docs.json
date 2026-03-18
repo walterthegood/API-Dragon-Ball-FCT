@@ -7,16 +7,14 @@
     },
     "servers": [
         {
-            "url": "http://api-dragon-ball-fct.test",
+            "url": "https://api-dragon-ball.saosl.com",
             "description": "Servidor Local"
         }
     ],
     "paths": {
         "/api/personajes": {
             "get": {
-                "tags": [
-                    "Personajes"
-                ],
+                "tags": ["Personajes"],
                 "summary": "Listar todos los personajes",
                 "operationId": "81b94e43f5695c010db6746c025e8588",
                 "responses": {
@@ -26,9 +24,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "Personajes"
-                ],
+                "tags": ["Personajes"],
                 "summary": "Crear un nuevo personaje",
                 "operationId": "bb37a7570de4b6e1946f15ab0eaad748",
                 "requestBody": {
@@ -146,9 +142,7 @@
         },
         "/api/personajes/{id}": {
             "get": {
-                "tags": [
-                    "Personajes"
-                ],
+                "tags": ["Personajes"],
                 "summary": "Obtener un personaje por su ID",
                 "operationId": "df74aada7e99eb3739537ddd8ec04819",
                 "parameters": [
@@ -173,9 +167,7 @@
                 }
             },
             "put": {
-                "tags": [
-                    "Personajes"
-                ],
+                "tags": ["Personajes"],
                 "summary": "Actualizar un personaje existente",
                 "operationId": "3e32c2eb8b0bc16d87fbf8eb23ef41ff",
                 "parameters": [
@@ -291,9 +283,7 @@
                 }
             },
             "delete": {
-                "tags": [
-                    "Personajes"
-                ],
+                "tags": ["Personajes"],
                 "summary": "Eliminar un personaje",
                 "description": "Realiza un borrado lógico (Soft Delete) del personaje indicado por su ID.",
                 "operationId": "f49405bd769a339c74f76d42feb0d79e",
@@ -321,9 +311,7 @@
         },
         "/api/planetas": {
             "get": {
-                "tags": [
-                    "Planetas"
-                ],
+                "tags": ["Planetas"],
                 "summary": "Obtener todos los planetas",
                 "operationId": "fe8c928e7b4ecd15badc54d8791fdbce",
                 "responses": {
@@ -333,9 +321,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "Planetas"
-                ],
+                "tags": ["Planetas"],
                 "summary": "Crear un nuevo planeta",
                 "operationId": "1ffaf79904345f5156d3403e6a2e069a",
                 "requestBody": {
@@ -385,9 +371,7 @@
         },
         "/api/planetas/{id}": {
             "get": {
-                "tags": [
-                    "Planetas"
-                ],
+                "tags": ["Planetas"],
                 "summary": "Obtener un planeta por ID",
                 "operationId": "3706697f71f833a754567cb9bc42b9be",
                 "parameters": [
@@ -412,9 +396,7 @@
                 }
             },
             "put": {
-                "tags": [
-                    "Planetas"
-                ],
+                "tags": ["Planetas"],
                 "summary": "Actualizar un planeta existente",
                 "operationId": "f54ba989ec73cff10ed7e85043fd5c5d",
                 "parameters": [
@@ -471,9 +453,7 @@
                 }
             },
             "delete": {
-                "tags": [
-                    "Planetas"
-                ],
+                "tags": ["Planetas"],
                 "summary": "Eliminar un planeta",
                 "operationId": "810fe44192d7c74dc7be63640e9b526f",
                 "parameters": [
@@ -500,9 +480,7 @@
         },
         "/api/transformaciones": {
             "get": {
-                "tags": [
-                    "Transformaciones"
-                ],
+                "tags": ["Transformaciones"],
                 "summary": "Obtener todas las transformaciones",
                 "operationId": "c65fde83076b6d91fcf751780ea1bf32",
                 "responses": {
@@ -512,9 +490,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "Transformaciones"
-                ],
+                "tags": ["Transformaciones"],
                 "summary": "Crear una nueva transformación",
                 "operationId": "b6b1c914e621f0d944f3a2a8c591d232",
                 "requestBody": {
@@ -523,11 +499,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "name",
-                                    "ki",
-                                    "image"
-                                ],
+                                "required": ["name", "ki", "image"],
                                 "properties": {
                                     "name": {
                                         "type": "string",
@@ -565,9 +537,7 @@
         },
         "/api/transformaciones/{id}": {
             "get": {
-                "tags": [
-                    "Transformaciones"
-                ],
+                "tags": ["Transformaciones"],
                 "summary": "Obtener una transformación por su ID",
                 "description": "Devuelve los datos detallados de una transformación específica buscando por su ID.",
                 "operationId": "6176573197d1e7467146c41c995f6d9a",
@@ -593,9 +563,7 @@
                 }
             },
             "put": {
-                "tags": [
-                    "Transformaciones"
-                ],
+                "tags": ["Transformaciones"],
                 "summary": "Actualizar una transformación existente",
                 "operationId": "df5c1d839c1779b1532d0a3599d3714a",
                 "parameters": [
@@ -654,9 +622,7 @@
                 }
             },
             "delete": {
-                "tags": [
-                    "Transformaciones"
-                ],
+                "tags": ["Transformaciones"],
                 "summary": "Eliminar una transformación",
                 "description": "Elimina la transformación indicada por su ID de la base de datos.",
                 "operationId": "1e718b49359c8a635dabfcf8130dcad5",
