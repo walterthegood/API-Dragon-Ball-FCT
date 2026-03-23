@@ -50,7 +50,7 @@ class CharacterSeeder extends Seeder
             'race' => 'Half-Saiyan',
             'gender' => 'Male',
             'description' => 'Hijo mayor de Goku.',
-            'image' => 'https://dragonball-api.com/characters/gohan_normal.webp',
+            'image' => 'https://dragonball-api.com/characters/gohan.webp',
             'affiliation' => 'Z Fighter',
             'planet_id' => $tierra->id,
         ]);
@@ -62,7 +62,7 @@ class CharacterSeeder extends Seeder
             'race' => 'Namekian',
             'gender' => 'Male',
             'description' => 'Guerrero táctico y maestro de Gohan.',
-            'image' => 'https://dragonball-api.com/characters/piccolo_normal.webp',
+            'image' => 'https://dragonball-api.com/characters/picolo_normal.webp',
             'affiliation' => 'Z Fighter',
             'planet_id' => $namek->id,
         ]);
