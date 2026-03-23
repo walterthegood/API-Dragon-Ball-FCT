@@ -74,7 +74,8 @@ class CharacterSeeder extends Seeder
             'race' => 'Frieza Race',
             'gender' => 'Male',
             'description' => 'Emperador del mal.',
-            'image' => 'https://dragonball-api.com/characters/frieza_normal.webp',
+            'image' => 'https://dragonball-api.com/characters/Freezer.webp
+',
             'affiliation' => 'Villain',
             'planet_id' => $tierra->id, 
         ]);
@@ -134,7 +135,7 @@ class CharacterSeeder extends Seeder
             'race' => 'Human',
             'gender' => 'Male',
             'description' => 'El humano más fuerte.',
-            'image' => 'https://dragonball-api.com/characters/krillin_normal.webp',
+            'image' => 'https://dragonball-api.com/characters/Krilin_Universo7.webp',
             'affiliation' => 'Z Fighter',
             'planet_id' => $tierra->id,
         ]);
