@@ -17,8 +17,8 @@ class TransformationSeeder extends Seeder
         $goku = Character::where('name', 'Goku')->first();
         $vegeta = Character::where('name', 'Vegeta')->first();
         $gohan = Character::where('name', 'Gohan')->first();
-        $frieza = Character::where('name', 'Freezer')->first();
-        $piccolo = Character::where('name', 'Piccolo')->first();
+        $Bulma = Character::where('name', 'Bulma')->first();
+        $Celula = Character::where('name', 'Celula')->first();
 
         $gokuTransforms = [
             ['name' => 'Goku SSJ', 'ki' => '3 Billion', 'image' => 'https://dragonball-api.com/transformaciones/goku_ssj.webp'],
@@ -34,67 +34,67 @@ class TransformationSeeder extends Seeder
         }
 
         Transformation::create([
-            'name' => 'Ultra Ego', 
-            'ki' => '90 Septillion', 
+            'name' => 'Vegeta SSJ', 
+            'ki' => '330.000.000', 
             'character_id' => $vegeta->id,
-            'image' => 'https://dragonball-api.com/transformaciones/vegeta_ultra_ego.webp'
+            'image' => 'https://dragonball-api.com/transformaciones/vegeta SSJ (2).webp'
         ]);
 
         Transformation::create([
-            'name' => 'Gohan Bestia', 
-            'ki' => '80 Septillion', 
+            'name' => 'Gohan SSJ', 
+            'ki' => '4.700.000.000', 
             'character_id' => $gohan->id,
-            'image' => 'https://dragonball-api.com/transformaciones/gohan_beast.webp'
+            'image' => 'https://dragonball-api.com/transformaciones/gohan_ssj-removebg-preview.webp'
         ]);
 
         Transformation::create([
-            'name' => 'Cell Perfecto', 
-            'ki' => '50 Septillion', 
-            'character_id' => Character::where('name', 'Cell')->first()->id,
-            'image' => 'https://dragonball-api.com/transformaciones/cell_perfect.webp'
+            'name' => 'Semi Perfect Form', 
+            'ki' => '897.000.000', 
+            'character_id' => Character::where('name', 'Celula')->first()->id,
+            'image' => 'https://dragonball-api.com/transformaciones/Semi-Perfect_Cell.webp'
         ]);
 
         Transformation::create([
-            'name' => 'Broly SSJ Legendario', 
-            'ki' => '70 Septillion', 
-            'character_id' => Character::where('name', 'Broly')->first()->id,
-            'image' => 'https://dragonball-api.com/transformaciones/broly_ssj_legendary.webp'
+            'name' => 'Bulma', 
+            'ki' => '0', 
+            'character_id' => $Bulma->id,
+            'image' => 'https://dragonball-api.com/characters/bulma.webp'
         ]);
         
         Transformation::create([
-            'name' => 'Jiren Full Power', 
+            'name' => 'Freezer 2nd Form', 
             'ki' => '100 Septillion', 
-            'character_id' => Character::where('name', 'Jiren')->first()->id,
-            'image' => 'https://dragonball-api.com/transformaciones/jiren_full_power.webp'
+            'character_id' => Character::where('name', 'Freezer')->first()->id,
+            'image' => 'https://dragonball-api.com/transformaciones/freezer 2nd forma.webp'
         ]);
 
         Transformation::create([
-            'name' => 'Trunks SSJ Future', 
-            'ki' => '30 Septillion', 
-            'character_id' => Character::where('name', 'Trunks')->first()->id,
-            'image' => 'https://dragonball-api.com/transformaciones/trunks_ssj_future.webp'
+            'name' => 'Zarbon Monster', 
+            'ki' => '30.000', 
+            'character_id' => Character::where('name', 'Zarbon')->first()->id,
+            'image' => 'https://dragonball-api.com/transformaciones/zarbon monster.webp'
         ]);
         
         Transformation::create([
-            'name' => 'Krillin Destructo Disk', 
-            'ki' => '1 Million', 
-            'character_id' => Character::where('name', 'Krillin')->first()->id,
-            'image' => 'https://dragonball-api.com/transformaciones/krillin_destructo.webp'
+            'name' => 'Imperfect Form', 
+            'ki' => '370.000.000', 
+            'character_id' => Character::where('name', 'Celula')->first()->id,
+            'image' => 'https://dragonball-api.com/transformaciones/cell imperfect.webp'
         ]);
 
         Transformation::create([
-            'name' => 'Golden Freezer', 
-            'ki' => '400 Quadrillion', 
-            'character_id' => $frieza->id,
-            'image' => 'https://dragonball-api.com/transformaciones/frieza_golden.webp'
+            'name' => 'Imperfect Form', 
+            'ki' => '370.000.000', 
+            'character_id' => Character::where('name', 'Freezer')->first()->id,
+            'image' => 'https://dragonball-api.com/transformaciones/cell imperfect.webp'
         ]);
 
-        if ($piccolo) {
+        if (!$Celula) {
             Transformation::create([
-                'name' => 'Orange Piccolo', 
-                'ki' => '70 Septillion', 
-                'character_id' => $piccolo->id,
-                'image' => 'https://dragonball-api.com/transformaciones/piccolo_orange.webp'
+                'name' => 'Super Perfect Form', 
+                'ki' => '10.970.000.000', 
+                'character_id' => $Celula->id,
+                'image' => 'https://dragonball-api.com/transformaciones/cell perfect.webp'
             ]);
         }
     }
